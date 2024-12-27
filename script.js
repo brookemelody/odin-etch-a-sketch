@@ -16,6 +16,9 @@ function randomizeColor()
 // Target the container div in the HTML
 const containerDiv = document.querySelector(".container");
 
+// Initialize the opacity value
+let opacity = 0.1;
+
 // Use a loop to create 16 rows of squares
 for (let i = 0; i < 16; i++) {
     // Create a div to represent an individual row in the square grid
@@ -36,6 +39,19 @@ for (let i = 0; i < 16; i++) {
         /* Add an event listener to the square for mouseover to permanently
         change the background color of the square on hover */
         square.addEventListener("mouseover", () => {
+            // Reset opacity to 0 if it already reached 1.0
+            if (opacity == 1.0) {
+                opacity = 0.1;
+            }
+            // Otherwise, increment it by 10%
+            else {
+                opacity += 0.1;
+            }
+            // Round to 2 decimal places
+            opacity = Math.round(opacity * 100) / 100;
+            // Set the square's opacity
+            square.style.opacity = opacity;
+            // Set the square's background color
             square.style.backgroundColor = randomizeColor();
         })
 
@@ -61,6 +77,8 @@ resetButton.addEventListener("click", () => {
     
     // Clear the old grid
     containerDiv.textContent = '';
+    // Reset opacity to 0.1
+    opacity = 0.1;
 
     // Create a new grid with the user-specified dimensions
     for (let i = 0; i < numSquaresPerSide; i++) {
@@ -77,6 +95,14 @@ resetButton.addEventListener("click", () => {
             square.style.height = squareLength + "px";
 
             square.addEventListener("mouseover", () => {
+                if (opacity == 1.0) {
+                    opacity = 0.0;
+                }
+                else {
+                    opacity += 0.1;
+                }
+                opacity = Math.round(opacity * 100) / 100;
+                square.style.opacity = opacity;
                 square.style.backgroundColor = randomizeColor();
             })
 
