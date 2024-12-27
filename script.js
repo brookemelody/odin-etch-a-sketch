@@ -51,9 +51,13 @@ for (let i = 0; i < 16; i++) {
 const resetButton = document.querySelector("#resetGrid");
 resetButton.addEventListener("click", () => {
     // Take user input
-    let numSquaresPerSideStr = prompt("Enter the number of square per side for the new grid:");
+    let numSquaresPerSideStr = prompt("Enter the number of square per side for the new grid (Maximum is 100):");
     // Convert the user input from a String to an integer
     let numSquaresPerSide = Number(numSquaresPerSideStr);
+    // Limit user input to a maximum of 100
+    if (numSquaresPerSide > 100) {
+        numSquaresPerSide = 100;
+    }
     
     // Clear the old grid
     containerDiv.textContent = '';
