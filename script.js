@@ -1,3 +1,18 @@
+/**
+ * Extra Credit, randomizes the squares' RGB values with each interaction
+ * @returns String a String representation of a random rgb value
+ */
+function randomizeColor()
+{
+    // Randomize the squares' RGB values with each interaction
+    // Need to generate 3 random integers between 0 and 255 inclusive
+    let randR = Math.floor(Math.random() * (256));
+    let randG = Math.floor(Math.random() * (256));
+    let randB = Math.floor(Math.random() * (256));
+    // Return a String representation of the randomly generated rgb value
+    return `rgb(${randR}, ${randG}, ${randB})`;
+}
+
 // Target the container div in the HTML
 const containerDiv = document.querySelector(".container");
 
@@ -21,7 +36,7 @@ for (let i = 0; i < 16; i++) {
         /* Add an event listener to the square for mouseover to permanently
         change the background color of the square on hover */
         square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "gray";
+            square.style.backgroundColor = randomizeColor();
         })
 
         // Append the square as a child node of the row div
@@ -58,7 +73,7 @@ resetButton.addEventListener("click", () => {
             square.style.height = squareLength + "px";
 
             square.addEventListener("mouseover", () => {
-                square.style.backgroundColor = "gray";
+                square.style.backgroundColor = randomizeColor();
             })
 
             row.appendChild(square);            
